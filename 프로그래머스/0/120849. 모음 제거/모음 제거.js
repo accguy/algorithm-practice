@@ -6,4 +6,6 @@
         answer = answer.replaceAll("o", "");
         answer = answer.replaceAll("u", "");
         return answer;
+
+        // return my_string.replace(/[aeiou]/g, ''); // replace + 정규표현식
       }
