@@ -1,8 +1,8 @@
 function solution(cipher, code) {
     var answer = '';
-    const arr = [...cipher]
-    arr.forEach((item,index) => {
-        if((index+1)%code==0) answer += item;
-    })
+    const arr = [...cipher];
+    for(let i = code-1; i < arr.length; i += code){
+        answer += arr[i];
+    }
     return answer;
 }
