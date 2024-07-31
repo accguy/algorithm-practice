@@ -1,5 +1,5 @@
 function solution(dartResult) {
-    var array = dartResult.match(/\d+[SDT][*#]?/g);
+    var array = dartResult.match(/(\d+)([SDT])([*#]?)/g);
     var answer = array.map(v => parseInt(v.match(/\d+/)));
     // 제곱, 세제곱 계산하기 
     for (let i = 0; i < 3; i++){
