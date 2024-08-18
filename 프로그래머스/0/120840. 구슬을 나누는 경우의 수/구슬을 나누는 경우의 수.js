@@ -1,12 +1,10 @@
 function solution(balls, share) {
-    const min = Math.min(share, balls - share);
-    let numerator = 1;
-    let denominator = 1;
-    
-    for (let i = 0; i < min; i++) {
-        numerator *= (balls - i);
-        denominator *= (i + 1);
-    }
-    
-    return numerator / denominator;
+    const factorial = (n) => {
+        let result = 1;
+        for(let i = 1; i <= n; i++){
+            result *= i;
+        }
+        return result;
+    } 
+    return Math.round(factorial(balls) / (factorial(balls-share) * factorial(share)));
 }
