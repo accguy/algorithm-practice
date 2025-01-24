@@ -3,7 +3,8 @@ function solution(clothes) {
     // 종류를 key로 설정하고, value에 배열로 옷들을 저장함
 	for(let [name, type] of clothes){
         if(map.has(type)){
-            map.set(type, [...map.get(type), name]);
+            map.get(type).push(name);  // 배열에 직접 추가
+            // map.set(type, [...map.get(type), name]);
         }else{
             map.set(type, [name]);
         }
