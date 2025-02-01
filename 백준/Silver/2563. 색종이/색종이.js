@@ -1,6 +1,6 @@
 const input = require('fs').readFileSync('/dev/stdin').toString().trim().split("\n");
 const N = Number(input[0]);
-const bg = Array.from({ length: 100 }, () => Array(100).fill(0));
+const bg = Array(100).fill(0).map(x => Array(100).fill(0));
 for (let i = 1; i <= N; i++){
     const [x, y] = input[i].split(" ").map(Number);
     
