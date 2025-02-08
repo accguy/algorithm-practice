@@ -1,7 +1,4 @@
 function solution(numbers, n) {
-    let ans = 0;
-    for(let x of numbers) {
-        ans += x;
-        if(ans > n) return ans;
-    }
+    return numbers.reduce((a, c) => (a <= n) ? a + c : a, 0);
+    // 리듀스는 누적값을 뱉어낸다.
 }
