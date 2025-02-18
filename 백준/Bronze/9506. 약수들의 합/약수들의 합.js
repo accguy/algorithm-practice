@@ -1,23 +1,27 @@
-const input = require('fs').readFileSync('/dev/stdin').toString().split("\n").map(Number);
+const input = require('fs').readFileSync('/dev/stdin').toString().trim().split("\n").map(Number);
 for (let x of input) {
     if (x == -1) break;
-    const divisors = new Set([1]);
+    
+    if (x === 1) { 
+        console.log("1 is NOT perfect.");
+        continue;
+    }
+    
+    const divisors = [1];
+    
     for (let i = 2; i <= Math.sqrt(x); i++) {
         if (x%i == 0) {
-            divisors.add(i);
-            divisors.add(x/i);
+            divisors.push(i);
+            if(i !== x/i) divisors.push(x/i);
         }
     }
  
-    let answer = `${x} `;
-    const sum = [...divisors].reduce((a,c) => a + c, 0);
+    const sum = divisors.reduce((a,c) => a + c, 0);
     
     if (sum == x) {
-        const array = [...divisors].sort((a,b) => a - b);
-        answer += "= " + array.join(" + ");
-        console.log(answer);
+        divisors.sort((a,b) => a - b);
+        console.log(`${x} = ${divisors.join(" + ")}`);
     } else {
-        answer += `is NOT perfect.`;
-        console.log(answer);
+        console.log(`${x} is NOT perfect.`);
     }
 }
