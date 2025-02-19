@@ -1,0 +1,1 @@
+console.log(4 * Number(require('fs').readFileSync('/dev/stdin').toString().trim()));
