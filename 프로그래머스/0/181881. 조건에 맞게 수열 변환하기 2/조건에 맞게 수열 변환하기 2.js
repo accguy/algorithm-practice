@@ -1,20 +1,18 @@
 function solution(arr) {
-    const doubleArr = x => {
-        return x.map(el => {
-            if(el >= 50 && !(el%2)) {
-                return el / 2;
-            } else if (el < 50 && el%2) {
-                return el*2 + 1;
-            } else {
-                return el;
-            }
-        })
+    const transform = array => {
+        return array.map(el => 
+             el >= 50 && !(el%2) ? el / 2 :
+             el < 50 && (el%2) ? 2*el + 1 : el)
     }
     
     let count = 0;
-    while(JSON.stringify(doubleArr(arr)) !== JSON.stringify(arr)) {
+    let newArr = transform(arr);
+    
+    // 배열의 길이는 항상 같음
+    while(!newArr.every((v,i) => v === arr[i])) {
         count++;
-        arr = doubleArr(arr);
+        arr = newArr;
+        newArr = transform(arr);
     }
     return count;
 }
