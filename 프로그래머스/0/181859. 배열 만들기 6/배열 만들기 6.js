@@ -1,17 +1,14 @@
 function solution(arr) {
     let stk = [];
+    
     for(let x of arr) {
-        if(stk.length === 0){
+        const last = stk[stk.length - 1];
+        if(x === last) {
+            stk.pop();
+        } else { 
+            // stk가 빈 배열인 경우도 포함됨.
             stk.push(x);
-        } else {
-            const last = stk.at(-1);
-            if(last === x) {
-                stk.pop();
-            } else {
-                stk.push(x);
-            }
         }
     }
-    
     return stk.length ? stk : [-1];
 }
