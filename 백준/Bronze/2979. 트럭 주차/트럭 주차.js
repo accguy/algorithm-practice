@@ -1,20 +1,20 @@
 const input = require('fs').readFileSync(0,"utf-8").toString().trim().split("\n");
 const [A,B,C] = input[0].split(" ").map(Number);
-const parkTimes = input.slice(1).map(x => x.split(" ").map(Number)).sort((a,b)=>b[1]-a[1]);
-const end = parkTimes[0][1];
-const start = parkTimes.sort((a,b)=>a[0]-b[0])[0][0];
-const parkTimeSumArr = Array(end).fill(0);
+const parkTimes = input.slice(1).map(x => x.split(" ").map(Number));
+const timeLine = Array(101).fill(0); // 차가 들어오고 나가는 정보만 기록
 
 for(const [s, e] of parkTimes){
-    for(let i = s; i < e; i++){
-        parkTimeSumArr[i]++;
-    }
+    timeLine[s]++; // s분에 차가 1대 들어옴
+    timeLine[e]--; // e분에 차가 1대 나감
 }
 
-let answer = 0;
-for(let i = start; i <= end; i++){
-    switch(parkTimeSumArr[i]){
-        case 1 : 
+// 누적합 풀이법
+let answer = 0, count = 0;
+for(let i = 0; i < timeLine.length; i++){
+    count += timeLine[i]; // i분에 차가 몇대 있는지 정보 갱신
+    switch(count){
+        case 0: break;
+        case 1: 
             answer += A;
             break;
         case 2:
