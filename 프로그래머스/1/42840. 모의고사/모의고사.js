@@ -5,18 +5,16 @@ function solution(answers) {
         [3,3,1,1,2,2,4,4,5,5]
     ];
     
-    const result = students.map((stu) => {
-        const score = answers.reduce((a,c,i) => answers[i]===stu[i%stu.length] ? a+1:a, 0);
+    const scores = students.map((student) => {
+        const score = answers.reduce((a,c,i) => answers[i]===student[i%student.length] ? a+1:a, 0);
         return score;
     })  
-    const MAX = Math.max(...result);
-    const ANSWER = [];
+    const maxScore = Math.max(...scores);
+    const answer = [];
     for(let i = 0; i < 3; i++){
-        if(result[i]===MAX){
-            ANSWER.push(i+1);
+        if(scores[i]===maxScore){
+            answer.push(i+1);
         }
     }
-    return ANSWER;
+    return answer;
 }
-
-
