@@ -16,7 +16,7 @@ let order = 0;
 const dfs = (node) => {
     visited[node] = ++order;
     for(const x of g[node]){
-        if(x !== undefined && !visited[x]){
+        if(!visited[x]){
             dfs(x);
         }
     }
