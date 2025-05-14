@@ -6,7 +6,7 @@ for(let i = 1; i <= N; i++){
     matrix.push(row);
 }
 
-const answer = [];
+let answer = Infinity;
 // (i, j): start point
 for(let i = 0; i <= N-8; i++){
     for(let j = 0; j <= M-8; j++){
@@ -18,12 +18,14 @@ for(let i = 0; i <= N-8; i++){
                 const currentColor = matrix[row][col];
                 const expectedColorOfCaseB = (col + row) % 2 ? 'W' : 'B';
                 const expectedColorOfCaseW = (col + row) % 2 ? 'B' : 'W';
-                if(currentColor===expectedColorOfCaseB) countOfCaseB++;
-                if(currentColor===expectedColorOfCaseW) countOfCaseW++;
+                if(currentColor!==expectedColorOfCaseB) countOfCaseB++;
+                if(currentColor!==expectedColorOfCaseW) countOfCaseW++;
             }
         }
-        const minRepaintCount = countOfCaseB > countOfCaseW ? 64 - countOfCaseB : 64 - countOfCaseW;
-        answer.push(minRepaintCount);
+        const minRepaintCount = Math.min(countOfCaseB, countOfCaseW);
+        if(minRepaintCount < answer) {
+            answer = minRepaintCount;
+        }
     }
 }
-console.log(Math.min(...answer));
+console.log(answer);
