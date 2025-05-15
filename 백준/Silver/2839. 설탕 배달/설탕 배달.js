@@ -1,12 +1,10 @@
 const N = +require('fs').readFileSync(0,'utf-8').toString();
-let amountOfFive = Math.floor(N/5);
-
-let change = N - amountOfFive * 5;
-
-while(change%3 !== 0 && amountOfFive > 0){
-    amountOfFive--;
-    change = N - amountOfFive * 5;
+let five = Math.floor(N/5); // 5kg 봉투의 수
+let rest = N - five * 5; // 남은 양
+while(rest % 3 !== 0 && five > 0){
+    five--;
+    rest = N - five * 5;
 }
-let amountOfThree = change % 3 === 0 ? Math.floor(change/3) : -1;
-const total = amountOfFive + amountOfThree;
-console.log(total);
+
+const answer = rest % 3 === 0 ? five + rest/3 : -1;
+console.log(answer);
